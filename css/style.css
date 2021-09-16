@@ -1,5 +1,5 @@
 #home {
-  background-color: #e6400e;
+  background-color: #000022;
   background-image: url("");
   background-repeat: no-repeat;
   background-size: cover;
@@ -9,12 +9,12 @@
 /* ---- stats.js ---- */
 
 .count-particles{
-  background: #e6400e;
+  background: #000022;
   position: absolute;
   top: 48px;
   left: 0;
   width: 80px;
-  color: #e6400e;
+  color: #000022;
   font-size: .8em;
   text-align: left;
   text-indent: 4px;
@@ -191,7 +191,7 @@ a:hover {
 }
 
 .overlay-mf {
-  background-color: #05d7e6;
+  background-color: #000022;
 }
 
 .overlay-mf {
