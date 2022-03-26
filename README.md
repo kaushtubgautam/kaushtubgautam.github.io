@@ -18,17 +18,3 @@ JavaScript
 
 
 <h2> CREDITS </h2>
-
-<h3> Kaushtub Gautam </h3> 
-
-
-
-  <p> <h1> How to contact us? </h1> 
-<h4> Reach us with our mail id :- </h4>
-
-```yaml
-
-kaushtubkg@gmail.com
-
-```
-</p>
