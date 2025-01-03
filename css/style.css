@@ -217,6 +217,7 @@ a:hover {
 .table-cell {
   display: table-cell;
   vertical-align: middle;
+  color: chartreuse  ;
 }
 
 /*--/ Sections /--*/
@@ -712,7 +713,7 @@ a:hover {
 }
 
 .intro .overlay-itro {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(10, 59, 2, 0.599);
   position: absolute;
   top: 0;
   left: 0px;
@@ -723,7 +724,7 @@ a:hover {
 }
 
 .intro .intro-title {
-  color: #fff;
+  color: white;
   font-weight: 600;
   font-size: 3rem;
 }
