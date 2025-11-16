@@ -1,146 +1,532 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
-  
-  <meta charset="utf-8">
-  <title>Kaushtub Gautam</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  
-  <meta content="" name="description">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaushtub Gautam - Innovator | Web3, AI, Sustainability</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-  <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+    <style>
+        /* Custom base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0c0c0d; /* Slightly off-black */
+            color: #E2E8F0; /* Tailwind 'slate-200' */
+            --spotlight-size: 400px;
+        }
 
-  <!-- Bootstrap CSS File -->
-  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        /* Spotlight effect */
+        .spotlight-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(
+                circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+                rgba(45, 212, 191, 0.07) 0%, /* Teal, 0.07 opacity */
+                rgba(45, 212, 191, 0.0) 20%, /* Fades out quickly */
+                transparent 100%
+            );
+            z-index: 50; /* Above background, below content */
+        }
+        
+        /* Animated Gradient Text */
+        .gradient-text {
+            background: linear-gradient(
+                90deg, 
+                #34D399, /* Tailwind 'emerald-400' */
+                #2DD4BF, /* Tailwind 'teal-400' */
+                #67E8F9  /* Tailwind 'cyan-300' */
+            );
+            background-size: 200% 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: gradient-flow 6s ease-in-out infinite;
+        }
 
-  <!-- Libraries CSS Files -->
-  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="lib/animate/animate.min.css" rel="stylesheet">
-  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-  <link href="lib/printjs/css/print.min.css" rel="stylesheet">
-  <!-- Main Stylesheet File -->
-  <link href="css/style-common.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
+        /* Scroll-triggered Animations */
+        .observe-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .observe-fade.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
+        /* Project Card Hover Effect */
+        .project-card .details-overlay {
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        .project-card:hover .details-overlay {
+            transform: translateY(0);
+        }
+
+        .project-card .project-image {
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        /* 3D Tilt Effect on Project Cards */
+        .project-card {
+            transform-style: preserve-3d;
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* Floating Bubbles Animation */
+        .bubble-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+        
+        .bubble {
+            position: absolute;
+            border: 1px solid #2dd4bf; /* Teal border */
+            border-radius: 50%;
+            background: rgba(45, 212, 191, 0.1);
+            color: #94f7e6; /* Lighter teal text */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            animation: float 20s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(45, 212, 191, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .bubble:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(45, 212, 191, 0.4);
+        }
+
+        .bubble:nth-child(1) {
+            width: 100px; height: 100px; top: 10%; left: 15%; animation-duration: 15s;
+        }
+        .bubble:nth-child(2) {
+            width: 140px; height: 140px; top: 30%; left: 60%; animation-duration: 20s; animation-delay: 2s;
+        }
+        .bubble:nth-child(3) {
+            width: 80px; height: 80px; top: 70%; left: 10%; animation-duration: 18s; animation-delay: 4s;
+        }
+        .bubble:nth-child(4) {
+            width: 120px; height: 120px; top: 60%; left: 80%; animation-duration: 16s; animation-delay: 1s;
+        }
+        .bubble:nth-child(5) {
+            width: 90px; height: 90px; top: 20%; left: 40%; animation-duration: 22s; animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(15px, 20px); }
+            50% { transform: translate(-10px, -15px); }
+            75% { transform: translate(10px, -20px); }
+            100% { transform: translate(0, 0); }
+        }
+        
+        /* Shimmer Button Effect */
+        .shimmer-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .shimmer-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                110deg, 
+                transparent 40%, 
+                rgba(255, 255, 255, 0.2) 50%, 
+                transparent 60%
+            );
+            transform: translateX(-100%);
+            transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        
+        .shimmer-button:hover::after {
+            transform: translateX(100%);
+            transition-duration: 1.2s;
+        }
+
+        .shimmer-button:hover {
+            box-shadow: 0 0 20px rgba(45, 212, 191, 0.3);
+            transform: translateY(-2px);
+        }
+
+    </style>
 </head>
+<body class="relative">
 
-<body id="page-top">
+    <!-- Mouse Spotlight Effect -->
+    <div class="spotlight-effect" aria-hidden="true"></div>
 
-  <!--/ Nav Star /-->
-  <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
-    <div class="container">
-      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
-        aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link js-scroll active" href="#home">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll" href="#about">About Me</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll" href="#service">Languages</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll" href="#contact">Contact</a>
-          </li>
-         
-          <li class="nav-item">
-            <a class="nav-link js-scroll" href="http://github.com/kaushtubgautam?tab=repositories">Projects</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <!--/ Nav End /-->
-
-  <!--/ Intro Skew Star /-->
-  <div id="home" class="intro route bg-image">
-    <div class="overlay-itro"></div>
-    <div class="intro-content display-table">
-      <div class="table-cell">
-        <div class="container">
-          <!--<p class="display-6 color-d">Hello, world!</p>-->
-          <h1 class="intro-title mb-4">Kaushtub Gautam</h1>
-          <p class="intro-subtitle"><span class="text-slider-items">Sustainability, Blockchain, A.I, Web3, 🇮🇳</span><strong class="text-slider"></strong></p>
-          <!-- <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="#about" role="button">Learn More</a></p> -->
-        </div>
-      </div>
-    </div>
-  </div>
-  
-
-
-  <section id="service" class="services-mf route">
-              <div class="card mt-5" style="padding: 5%">
-                <h3 class="font-weight-bold sideline mb-3">Contact Me</h3>
-                <div class="timeline"></div>
-                  <div class="job row">
-                    <div class=""><i 
-                        class=""></i></div>
-               
-                
-                  </div>
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-opacity-30 border-b border-zinc-700/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo / Name -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-xl font-bold text-slate-200 hover:text-white transition-colors">Kaushtub Gautam</a>
                 </div>
-              </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex md:items-center md:space-x-8">
+                    <a href="#about" class="text-sm font-medium text-slate-300 hover:text-white transition-colors px-3 py-2 rounded-md">About Me</a>
+                    <a href="#skills" class="text-sm font-medium text-slate-300 hover:text-white transition-colors px-3 py-2 rounded-md">Skills</a>
+                    <a href="#projects" class="text-sm font-medium text-slate-300 hover:text-white transition-colors px-3 py-2 rounded-md">Projects</a>
+                    <a href="#building" class="text-sm font-medium text-slate-300 hover:text-white transition-colors px-3 py-2 rounded-md">Now</a>
+                    <a href="#contact" class="text-sm font-medium text-slate-300 hover:text-white transition-colors px-3 py-2 rounded-md">Contact</a>
+                </nav>
+                
+                <!-- Mobile Menu Button (if needed, add JS to toggle) -->
+                <div class="md:hidden">
+                    <button class="text-slate-300 hover:text-white">
+                        <i class="ph ph-list text-2xl"></i>
+                    </button>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <!--/ Section Services End /-->
+    </header>
 
-    </div>
-  </section>
+    <!-- Page Content -->
+    <main>
 
-  <!--/ Section Contact-footer End /-->
+        <!-- 
+          Hero Section
+          "Who I Am"
+        -->
+        <section id="home" class="relative w-full h-screen flex items-center justify-center text-center overflow-hidden">
+            <!-- Background Glows for Parallax -->
+            <div id="glow-1" class="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl filter opacity-70" style="transition: transform 0.2s ease-out;"></div>
+            <div id="glow-2" class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl filter opacity-70" style="transition: transform 0.2s ease-out;"></div>
+            
+            <div class="relative z-10 px-4 sm:px-6 lg:px-8 observe-fade">
+                <h1 class="text-5xl sm:text-6xl lg:text-8xl font-extrabold tracking-tighter">
+                    <span class="block mb-4">Hello, I'm</span>
+                    <span class="gradient-text">Kaushtub Gautam</span>
+                </h1>
+                
+                <p class="mt-6 max-w-xl mx-auto text-lg sm:text-xl text-slate-300">
+                    I'm an innovator and builder at the intersection of
+                    <strong class="text-white">A.I.</strong>, 
+                    <strong class="text-white">Web3</strong>, and 
+                    <strong class="text-white">Sustainability</strong>.
+                </p>
+                
+                <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#projects" class="shimmer-button inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-black bg-white hover:bg-slate-100">
+                        See My Work
+                    </a>
+                    <a href="#contact" class="shimmer-button inline-flex items-center justify-center px-8 py-3 border border-zinc-700 text-base font-medium rounded-lg text-white bg-zinc-800 hover:bg-zinc-700">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Scroll Down Indicator -->
+            <div classs="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 observe-fade" style="transition-delay: 500ms;">
+                <a href="#about" class="text-slate-400 hover:text-white animate-bounce">
+                    <i class="ph ph-arrow-down text-3xl"></i>
+                </a>
+            </div>
+        </section>
 
-  <a href="javascript:void(0);" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-  <div id="preloader"></div>
-  <div id="app_customizer" class="app-customizer">
-    <a href="javascript:void(0);" class="app-customizer-toggle">
-      <i class="fas fa-cog"></i>
-    </a>
-    <div class="colors">
-      <span id="default_pick" onclick="changeCSS('css/style.css', 10);"></span>
-      <span id="purple_pick" onclick="changeCSS('css/style-purple.css', 10);"></span>
-      <span id="red_pick" onclick="changeCSS('css/style-red.css', 10);"></span>
-      <span id="blue_pick" onclick="changeCSS('css/style-sky-blue.css', 10);"></span>
-      <span id="green_pick" onclick="changeCSS('css/style-green.css', 10);"></span>
-      <span id="orange_pick" onclick="changeCSS('css/style-orange.css', 10);"></span>
-    </div>
-  </div>
-  <!-- JavaScript Libraries -->
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/jquery/jquery-migrate.min.js"></script>
-  <script src="lib/popper/popper.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-  <script src="lib/easing/easing.min.js"></script>
-  <script src="lib/counterup/jquery.waypoints.min.js"></script>
-  <script src="lib/counterup/jquery.counterup.js"></script>
-  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="lib/lightbox/js/lightbox.min.js"></script>
-  <script src="lib/typed/typed.min.js"></script>
-  <script src="lib/printjs/js/print.min.js"></script>
-  <script src="lib/particles.min.js"></script>
-  <!-- Contact Form JavaScript File -->
-  
+        <!-- 
+          About Section
+          "Who I Am" (Detailed)
+        -->
+        <section id="about" class="py-24 sm:py-32 bg-zinc-900/70 border-y border-zinc-700/50 observe-fade">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Image -->
+                <div class="w-full h-auto aspect-square rounded-lg overflow-hidden bg-zinc-800">
+                    <img 
+                        src="https://placehold.co/600x600/0c0c0d/94f7e6?text=Kaushtub+Gautam" 
+                        alt="Kaushtub Gautam"
+                        class="w-full h-full object-cover"
+                        onerror="this.src='https://placehold.co/600x600/0c0c0d/94f7e6?text=Kaushtub+Gautam'"
+                    >
+                </div>
+                
+                <!-- Text Content -->
+                <div>
+                    <h2 class="text-base font-semibold leading-7 gradient-text">My Mission</h2>
+                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold tracking-tighter text-white">
+                        Building a Sustainable Future with Code
+                    </p>
+                    <p class="mt-6 text-lg text-slate-300 leading-relaxed">
+                        I believe technology is the most powerful tool we have for driving positive change. My passion lies in connecting the dots between seemingly disparate fields—using the intelligence of <strong class="text-white">A.I.</strong>, the transparency of <strong class="text-white">Web3</strong>, and the scalability of modern <strong class="text-white">Software</strong> to build solutions for a more sustainable and equitable world.
+                    </p>
+                    <p class="mt-4 text-lg text-slate-300 leading-relaxed">
+                        Whether it's developing a decentralized app to track carbon credits or using machine learning to optimize energy consumption, I'm driven by the challenge of solving complex problems that matter.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 
+          Skills Section
+          "What I Do"
+        -->
+        <section id="skills" class="py-24 sm:py-32 overflow-hidden observe-fade">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-base font-semibold leading-7 gradient-text">My Toolkit</h2>
+                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold tracking-tighter text-white">
+                        Core Competencies
+                    </p>
+                </div>
+                
+                <div class="mt-16 bubble-container">
+                    <div class="bubble">A.I. & ML</div>
+                    <div class="bubble">Web3 & Blockchain</div>
+                    <div class="bubble">Sustainability Tech</div>
+                    <div class="bubble">Full-Stack Dev</div>
+                    <div class="bubble">Solidity</div>
+                </div>
+            </div>
+        </section>
 
-  <!-- Template Main Javascript File -->
-  <script src="js/main.js"></script>
-  <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <!-- 
+          Projects Section
+          "What I've Done"
+        -->
+        <section id="projects" class="py-24 sm:py-32 bg-zinc-900/70 border-t border-zinc-700/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 observe-fade">
+                    <h2 class="text-base font-semibold leading-7 gradient-text">My Portfolio</h2>
+                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold tracking-tighter text-white">
+                        Proof of Work
+                    </p>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-300">
+                        Here are a few projects I've built. (Hover for details!)
+                    </p>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Project Card 1 -->
+                    <div class="project-card rounded-lg overflow-hidden bg-zinc-800 shadow-xl border border-zinc-700 observe-fade" style="--tilt-x: 0; --tilt-y: 0; transform: perspective(1000px) rotateX(var(--tilt-y)) rotateY(var(--tilt-x));">
+                        <div class="relative overflow-hidden">
+                            <img src="https://placehold.co/600x400/18181b/2dd4bf?text=Project+One" alt="Project 1" class="w-full h-auto object-cover project-image" onerror="this.src='https://placehold.co/600x400/18181b/2dd4bf?text=Project+One'">
+                            
+                            <!-- Hover Overlay -->
+                            <div class="details-overlay absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black to-black/70 backdrop-blur-sm">
+                                <h3 class="text-2xl font-bold text-white">Project Title 1</h3>
+                                <p class="mt-2 text-slate-300">A decentralized application for tracking carbon offsets on the Ethereum blockchain.</p>
+                                <div class="mt-4 flex gap-4">
+                                    <a href="#" class="inline-flex items-center gap-2 text-sm font-medium text-teal-300 hover:text-teal-200">
+                                        View Code <i class="ph ph-github-logo"></i>
+                                    </a>
+                                    <a href="#" class="inline-flex items-center gap-2 text-sm font-medium text-teal-300 hover:text-teal-200">
+                                        Live Demo <i class="ph ph-arrow-up-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project Card 2 -->
+                    <div class="project-card rounded-lg overflow-hidden bg-zinc-800 shadow-xl border border-zinc-700 observe-fade" style="--tilt-x: 0; --tilt-y: 0; transform: perspective(1000px) rotateX(var(--tilt-y)) rotateY(var(--tilt-x)); transition-delay: 150ms;">
+                        <div class="relative overflow-hidden">
+                            <img src="https://placehold.co/600x400/18181b/67e8f9?text=Project+Two" alt="Project 2" class="w-full h-auto object-cover project-image" onerror="this.src='https://placehold.co/600x400/18181b/67e8f9?text=Project+Two'">
+                            
+                            <div class="details-overlay absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black to-black/70 backdrop-blur-sm">
+                                <h3 class="text-2xl font-bold text-white">Project Title 2</h3>
+                                <p class="mt-2 text-slate-300">A machine learning model to predict energy usage patterns for smart grids.</p>
+                                <div class="mt-4 flex gap-4">
+                                    <a href="#" class="inline-flex items-center gap-2 text-sm font-medium text-teal-300 hover:text-teal-200">
+                                        View Code <i class="ph ph-github-logo"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project Card 3 -->
+                    <div class="project-card rounded-lg overflow-hidden bg-zinc-800 shadow-xl border border-zinc-700 observe-fade" style="--tilt-x: 0; --tilt-y: 0; transform: perspective(1000px) rotateX(var(--tilt-y)) rotateY(var(--tilt-x)); transition-delay: 300ms;">
+                        <div class="relative overflow-hidden">
+                            <img src="https://placehold.co/600x400/18181b/34d399?text=Project+Three" alt="Project 3" class="w-full h-auto object-cover project-image" onerror="this.src='https://placehold.co/600x400/18181b/34d399?text=Project+Three'">
+                            
+                            <div class="details-overlay absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black to-black/70 backdrop-blur-sm">
+                                <h3 class="text-2xl font-bold text-white">Project Title 3</h3>
+                                <p class="mt-2 text-slate-300">Full-stack web platform for a local non-profit focused on sustainability.</p>
+                                <div class="mt-4 flex gap-4">
+                                    <a href="#" class="inline-flex items-center gap-2 text-sm font-medium text-teal-300 hover:text-teal-200">
+                                        View Code <i class="ph ph-github-logo"></i>
+                                    </a>
+                                    <a href="#" class="inline-flex items-center gap-2 text-sm font-medium text-teal-300 hover:text-teal-200">
+                                        Live Demo <i class="ph ph-arrow-up-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+          Now Section
+          "What I'm Building"
+        -->
+        <section id="building" class="py-24 sm:py-32">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center observe-fade">
+                <h2 class="text-base font-semibold leading-7 gradient-text">What I'm Building Now</h2>
+                <p class="mt-2 text-4xl sm:text-5xl font-extrabold tracking-tighter text-white">
+                    Always Learning, Always Building
+                </p>
+                <p class="mt-6 text-xl text-slate-300 leading-relaxed">
+                    I'm currently deep-diving into <strong class="text-white">[Your Current Technology, e.g., Rust and Substrate]</strong> to build a <strong class="text-white">[Your Current Project, e.g., high-performance oracle for real-world sustainability data]</strong>.
+                </p>
+            </div>
+        </section>
+
+        <!-- 
+          Contact Section
+        -->
+        <footer id="contact" class="py-24 bg-zinc-900/70 border-t border-zinc-700/50">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center observe-fade">
+                <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tighter gradient-text">
+                    Let's Connect
+                </h2>
+                <p class="mt-6 text-lg text-slate-300">
+                    I'm always open to discussing new ideas, projects, or opportunities.
+                </p>
+                <a href="mailto:your.email@example.com" class="shimmer-button mt-8 inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-black bg-white hover:bg-slate-100">
+                    Get In Touch
+                </a>
+                
+                <!-- Social Links -->
+                <div class="mt-16 flex justify-center space-x-8">
+                    <a href="httpsis://github.com/your-username" class="text-slate-400 hover:text-white transition-colors">
+                        <i class="ph ph-github-logo text-4xl"></i>
+                    </a>
+                    <a href="httpsis://linkedin.com/in/your-username" class="text-slate-400 hover:text-white transition-colors">
+                        <i class="ph ph-linkedin-logo text-4xl"></i>
+                    </a>
+                    <a href="httpsis://twitter.com/your-username" class="text-slate-400 hover:text-white transition-colors">
+                        <i class="ph ph-twitter-logo text-4xl"></i>
+                    </a>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+
+            // Spotlight Effect
+            const spotlight = document.querySelector('.spotlight-effect');
+            if (spotlight) {
+                window.addEventListener('mousemove', (e) => {
+                    // Use pageX/Y to get coordinates relative to the whole page
+                    // This is important if the page is scrollable
+                    document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+                    document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+                });
+            }
+
+            // Scroll-triggered Animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // Optional: unobserve after it's visible
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the element is in view
+            });
+
+            // Observe all elements with the class
+            document.querySelectorAll('.observe-fade').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Parallax Hero Glows
+            const heroSection = document.getElementById('home');
+            const glow1 = document.getElementById('glow-1');
+            const glow2 = document.getElementById('glow-2');
+
+            if (heroSection) {
+                heroSection.addEventListener('mousemove', (e) => {
+                    const rect = heroSection.getBoundingClientRect();
+                    // Calculate mouse position relative to the center of the hero section
+                    const moveX = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+                    const moveY = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+
+                    // Apply transform (move in opposite direction of mouse)
+                    // The numbers (e.g., -50, 30) control the "strength" of the effect
+                    if (glow1) {
+                        glow1.style.transform = `translate(${moveX * -50}px, ${moveY * -30}px)`;
+                    }
+                    if (glow2) {
+                        glow2.style.transform = `translate(${moveX * 40}px, ${moveY * 20}px)`;
+                    }
+                });
+            }
+
+            // New: 3D Tilt for Project Cards
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left; // Mouse X relative to element
+                    const y = e.clientY - rect.top;  // Mouse Y relative to element
+
+                    const midX = rect.width / 2;
+                    const midY = rect.height / 2;
+
+                    const tiltX = (x - midX) / midX * -8; // Max tilt 8 degrees
+                    const tiltY = (y - midY) / midY * 8;  // Max tilt 8 degrees
+
+                    card.style.setProperty('--tilt-x', tiltX + 'deg');
+                    card.style.setProperty('--tilt-y', tiltY + 'deg');
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.setProperty('--tilt-x', '0deg');
+                    card.style.setProperty('--tilt-y', '0deg');
+                });
+            });
+
+        });
+    </script>
 
 </body>
-
 </html>
